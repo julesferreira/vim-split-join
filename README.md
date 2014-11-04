@@ -7,14 +7,14 @@ Intelligently split arrays, objects, and parameter lists across multiple lines a
 ```php
 $arr = ['abc' => 123, 'def' => 456];
 ```
-After pressing `<LocalLeader>s[`
+After pressing `<LocalLeader>sa`
 ```php
 $arr = [
     'abc' => 123,
     'def' => 456,
 ];
 ```
-After pressing `<LocalLeader>j[`
+After pressing `<LocalLeader>ja`
 ```php
 $arr = ['abc' => 123, 'def' => 456];
 ```

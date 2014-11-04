@@ -6,21 +6,7 @@ endfunction
 function! splitJoinCommon#splitParameters()
   let oldSearch = @/
 
-  execute "silent normal \"syi(`[i\<return>\<esc>"
-  while col('.') !=# col('$') - 1 && col('$') != 1
-    if splitJoinCommon#getChar() ==# ","
-      execute "normal a\<return>\<esc>"
-    elseif splitJoinCommon#getChar() ==# "'"
-      execute "silent normal \"syi'`]"
-    elseif splitJoinCommon#getChar() ==# '"'
-      execute 'silent normal "syi"`]'
-    elseif splitJoinCommon#getChar() ==# "(" || splitJoinCommon#getChar() ==# "[" || splitJoinCommon#getChar() ==# "{"
-      execute "normal %"
-    endif
-    execute 'normal l'
-  endwhile
-
-  execute 'normal 0'
+  call splitJoinCommon#traverseBlock('(')
   silent s/\v([^\)])\)(.?)$/\1\r\)\2/e
   silent normal =a)
 
@@ -42,14 +28,11 @@ endfunction
 function! splitJoinCommon#traverseBlock(startingCharacter)
   execute "silent normal \"syi" . a:startingCharacter . "`[i\<return>\<esc>"
   while col('.') !=# col('$') - 1 && col('$') != 1
-    if splitJoinCommon#getChar() ==# ","
+    let l:currentChar = splitJoinCommon#getChar()
+    if l:currentChar ==# ","
       execute "normal a\<return>\<esc>"
-    elseif splitJoinCommon#getChar() ==# "'"
-      execute "silent normal \"syi'`]"
-    elseif splitJoinCommon#getChar() ==# '"'
-      execute 'silent normal "syi"`]'
-    elseif splitJoinCommon#getChar() ==# "(" || splitJoinCommon#getChar() ==# "[" || splitJoinCommon#getChar() ==# "{"
-      execute "normal %"
+    elseif l:currentChar ==# '"' || l:currentChar ==# "'" || l:currentChar ==# "(" || l:currentChar ==# "[" || l:currentChar ==# "{"
+      execute 'silent normal "syi' . l:currentChar . '`]'
     endif
     execute 'normal l'
   endwhile
