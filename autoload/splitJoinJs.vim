@@ -1,26 +1,9 @@
-function! s:getChar()
-  return matchstr(getline('.'), '\%' . col('.') . 'c.')
-endfunction
-
 " Break a JS array onto multiple lines
 function! splitJoinJs#splitArray()
   let oldSearch = @/
 
-  execute "normal yi[`[i\<return>\<esc>"
-  while col('.') !=# col('$') - 1
-    if s:getChar() ==# ","
-      execute "normal a\<return>\<esc>"
-    elseif s:getChar() ==# "'"
-      execute "normal yi'`]"
-    elseif s:getChar() ==# '"'
-      execute 'normal yi"`]'
-    elseif s:getChar() ==# "(" || s:getChar() ==# "[" || s:getChar() ==# "{"
-      execute "normal %"
-    endif
-    execute 'normal l'
-  endwhile
+  call splitJoinCommon#traverseBlock('[')
 
-  execute 'normal 0'
   silent s/\v([^\)])\](.?)$/\1\r\]\2/e
   silent normal =a]
 
@@ -31,9 +14,10 @@ endfunction
 function! splitJoinJs#joinArray()
   let oldSearch = @/
 
-  execute "normal yi[\<esc>"
+  execute "silent normal \"sya[\<esc>"
   '[,']join
-  s/\v\[ /[/g
+  silent s/\v\[ /[/g
+  silent s/\v \]/]/g
 
   let @/ = oldSearch
 endfunction
@@ -42,23 +26,22 @@ endfunction
 function! splitJoinJs#splitObject()
   let oldSearch = @/
 
-  execute "normal yi{`[i\<return>\<esc>"
-  while col('.') !=# col('$') - 1
-    if s:getChar() ==# ","
-      execute "normal a\<return>\<esc>"
-    elseif s:getChar() ==# "'"
-      execute "normal yi'`]"
-    elseif s:getChar() ==# '"'
-      execute 'normal yi"`]'
-    elseif s:getChar() ==# "(" || s:getChar() ==# "[" || s:getChar() ==# "{"
-      execute "normal %"
-    endif
-    execute 'normal l'
-  endwhile
+  call splitJoinCommon#traverseBlock('{')
 
-  execute 'normal 0'
-  silent s/\v([^\)])\}(.?)$/\1\r\}\2/e
+  silent s/\v([^\)])\}(.*)$/\1\r\}\2/e
   silent normal =a]
+
+  let @/ = oldSearch
+endfunction
+
+" Join a JS array onto one line
+function! splitJoinJs#joinObject()
+  let oldSearch = @/
+
+  execute "silent normal \"sya{\<esc>"
+  '[,']join
+  s/\v\{ /{/g
+  s/\v \}/}/g
 
   let @/ = oldSearch
 endfunction
