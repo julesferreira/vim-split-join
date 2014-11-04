@@ -1,15 +1,30 @@
-PHP Array Split/Join				*php-array-split-join.txt*
+Split/Join				*split-join.txt*
 ============================================================
 
-Intelligently split PHP arrays across multiple lines and join them to one
-line. A trailing comma is inserted on the last element on split and removed on
-join. It also handles nested arrays incrementally.
+Intelligently split text objects across multiple lines and join them to one
+line.
 
-									*<LocalLeader>sa*
-<LocalLeader>sa			Split an array across multiple lines. This is useful
+Formatting is handled automatically.  For example when splitting a PHP array, a
+trailing comma is inserted on the last element on split and removed on join. It
+also handles nested arrays incrementally.
+
+									*<LocalLeader>s[*
+<LocalLeader>s[			Split an array across multiple lines. This is useful
 						if the array grows past the maximum line length.
-									*<LocalLeader>js*
-<LocalLeader>js			Join an array onto one line.
+									*<LocalLeader>j[*
+<LocalLeader>j[			Join an array onto one line.
+									*<LocalLeader>s(*
+<LocalLeader>s(			Split a parameter list across multiple lines. This is
+                        useful if the parameter list grows past the maximum line
+                        length.
+									*<LocalLeader>j(*
+<LocalLeader>j(			Join a parameter list onto one line.
+									*<LocalLeader>s{*
+<LocalLeader>s{			Split a javascript object across multiple lines. This is
+                        useful if the javascript object grows past the maximum line
+                        length.
+									*<LocalLeader>j{*
+<LocalLeader>j{			Join a javascript object onto one line.
 
 ## Installation
 
