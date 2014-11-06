@@ -1,0 +1,1 @@
+vim -u setup.vim -S runner.vim 2> /dev/null | sed "s/\o033\[?\?[0-9;]*.//g"
