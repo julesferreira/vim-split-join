@@ -4,10 +4,10 @@ function! splitJoinPhp#splitArray()
 
   call splitJoinCommon#traverseBlock('[')
 
-  if search('\v([^,])\](.*)$', '', line('.')) " There isn't already a trailing comma
-    silent s/\v([^,])\](.*)$/\1,\r\]\2/e
+  if search('\v([^,])\]([^\]]*)$', '', line('.')) " There isn't already a trailing comma
+    silent s/\v([^,])\]([^\]]*)$/\1,\r\]\2/e
   else
-    silent s/\v,\](.*)$/,\r\]\1/e
+    silent s/\v,\]([^\]]*)$/,\r\]\1/e
   endif
   silent normal =a]
 

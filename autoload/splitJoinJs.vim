@@ -28,7 +28,7 @@ function! splitJoinJs#splitObject()
 
   call splitJoinCommon#traverseBlock('{')
 
-  silent s/\v([^\)])\}(.*)$/\1\r\}\2/e
+  silent s/\v([^\)])\}([^\}]*)$/\1\r\}\2/e
   silent normal =a]
 
   let @/ = oldSearch
