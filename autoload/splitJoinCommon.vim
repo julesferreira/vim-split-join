@@ -7,7 +7,7 @@ function! splitJoinCommon#splitParameters()
   let oldSearch = @/
 
   call splitJoinCommon#traverseBlock('(')
-  silent s/\v([^\)])\)(.?)$/\1\r\)\2/e
+  silent s/\v\)([^\)]*)$/\r\)\1/e
   silent normal =a)
 
   let @/ = oldSearch
