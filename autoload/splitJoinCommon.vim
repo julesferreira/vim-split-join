@@ -33,6 +33,10 @@ function! splitJoinCommon#traverseBlock(startingCharacter)
       execute "normal a\<return>\<esc>"
     elseif l:currentChar ==# '"' || l:currentChar ==# "'" || l:currentChar ==# "(" || l:currentChar ==# "[" || l:currentChar ==# "{"
       execute 'silent normal "syi' . l:currentChar . '`]'
+      let l:newCurrentChar = splitJoinCommon#getChar()
+      if (l:currentChar ==# '"' || l:currentChar ==# "'") && l:newCurrentChar !=# l:currentChar
+        execute 'normal l'
+      endif
     endif
     execute 'normal l'
   endwhile
