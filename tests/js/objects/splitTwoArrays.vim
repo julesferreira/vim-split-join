@@ -1,9 +1,9 @@
 set filetype=javascript
 1a
 var arr = {
-	'foo' : 'bar',
-	'nested1' : ['data1', 'goo', 'nested2', ['ytr', 'jhg', 'ytr', 'tre'], 'data2', 'oog'],
-	'bar' : 'foo'
+'foo' : 'bar',
+'nested1' : ['data1', 'goo', 'nested2', ['ytr', 'jhg', 'ytr', 'tre'], 'data2', 'oog'],
+'bar' : 'foo'
 };
 var arr = {'foo' : 'bar', 'nested1' : ['data1', 'goo', 'nested2', ['ytr', 'jhg', 'ytr', 'tre'], 'data2', 'oog'], 'bar' : 'foo'};
 .

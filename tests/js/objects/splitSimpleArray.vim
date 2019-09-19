@@ -1,7 +1,7 @@
 set filetype=javascript
 1a
 var arr = {
-	'foo' : 'bar'
+'foo' : 'bar'
 };
 .
 retab!

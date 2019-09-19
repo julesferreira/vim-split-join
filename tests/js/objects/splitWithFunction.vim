@@ -1,9 +1,9 @@
 set filetype=javascript
 1a
 var arr = {
-	'foo' : 'b\'ar',
-	'json' : JSON.stringify({'test' : 'val[\'u\']e', 'goo' : {'rik' : 'fds'}, 'fds' : 'vxx'}),
-	'tre' : 'fgh'
+'foo' : 'b\'ar',
+'json' : JSON.stringify({'test' : 'val[\'u\']e', 'goo' : {'rik' : 'fds'}, 'fds' : 'vxx'}),
+'tre' : 'fgh'
 };
 .
 retab!
